@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container">
+		
+			<div class="my-card mb-3">
+		
+				<div class="card1-body">
+				
+					<h1 class="text-center">Update Campaign Details</h1>
+					
+					
+					<div class="container-fluid mt-1">
+					
+						<div class="row">
+						
+							<div class="col-md-10 offset-md-1">
+							
+								<form
+									novalidate 
+									action="#"
+									th:object="${campaign}"
+									enctype="multipart/form-data"
+									method="POST"
+									th:action="@{/user/campaign/process-update}"
+									class="mt-2"
+								>
+								
+								<input type="hidden" th:value="${campaign.campaignid}" name="campaignid"/>
+								
+								<!-- Title of campaign field-->
+								<p class="text-secondary mt-3">Campaign Title</p>
+								<div class="input-group">
+								
+									<div class="input-group-prepend">
+										
+										<div class="input-group-text mr-1">
+										
+											<i class="fa fa-plus"></i>
+										
+										</div>
+										
+									</div>
+									
+									<input 
+									type="text" 
+									id="title" 
+									name="title" 
+									placeholder="Enter Title of Campaign" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('title')? 'is-invalid':''}"
+									required
+									th:value="${campaign.title}"
+									/>
+									
+									<div class="invalid-feedback" th:each="e:${#fields.errors('title')}" th:text="${e}">
+								     
+								     </div>
+								
+								</div>
+								
+								<!-- Campaign Startdate field-->
+								<p class="text-secondary mt-3">Startdate</p>
+								<div class="input-group mt-1">
+								
+									<div class="input-group-prepend">
+										
+										<div class="input-group-text mr-1">
+										
+											<i class="fas fa-calendar-day"></i>
+										
+										</div>
+										
+									</div>
+									
+									<input 
+									type="date" 
+									id="startdate" 
+									name="startdate" 
+									placeholder="Enter Campaign Starting Date" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('startdate')? 'is-invalid':''}"
+									required
+									th:value="${campaign.startdate}"
+									/>
+									
+									<div class="invalid-feedback" th:each="e:${#fields.errors('startdate')}" th:text="${e}">
+								     
+								     </div>
+									
+								
+								</div>
+								
+								<!-- Expected Deadline field-->
+								<p class="text-secondary mt-3">Deadline</p>
+								<div class="input-group mt-1">
+								
+									<div class="input-group-prepend">
+										
+										<div class="input-group-text mr-1">
+										
+											<i class="fas fa-calendar-day"></i>
+										
+										</div>
+										
+									</div>
+									
+									<input 
+									type="date" 
+									id="deadline" 
+									name="deadline" 
+									placeholder="Enter expected deadline of campaign(May leave blank)" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('deadline')? 'is-invalid':''}"
+									required
+									th:value="${campaign.deadline}"
+									/>
+									
+									<div class="invalid-feedback" th:each="e:${#fields.errors('deadline')}" th:text="${e}">
+								     
+								     </div>
+									
+								
+								</div>
+								
+								<!-- Campaign status field-->
+								<p class="text-secondary mt-3">Status</p>
+								<div class="input-group mt-1">
+								
+									<div class="input-group-prepend">
+										
+										<div class="input-group-text mr-1">
+										
+											<i class="fas fa-hourglass-half"></i>
+										
+										</div>
+										
+									</div>
+									
+									<input 
+									type="text" 
+									id="status" 
+									name="status" 
+									placeholder="Enter Initial status of campaign" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('status')? 'is-invalid':''}"
+									required
+									th:value="${campaign.status}"
+									/>
+									
+									<div class="invalid-feedback" th:each="e:${#fields.errors('status')}" th:text="${e}">
+								     
+								     </div>
+									
+								</div>
+								
+								<p class="text-secondary mt-3">Description</p>
+								<!-- Campaign Description field -->
+								<div class="form-group mt-1">
+									<textarea 
+									id="mytextarea"
+									name="description"
+									th:text="${campaign.description}"
+									placeholder="Enter Campaign Description" 
+									rows="12" 
+									class="form-control"
+									></textarea>
+								</div>
+								
+								
+								
+								<!-- Campaign Poster Field -->
+								
+								<div class="container">
+								
+								<img class="image-fluid campaign_poster" src="" th:src="@{'/img/'+${campaign.image}}" alt="" />
+								
+								</div>
+								
+								<p class="text-secondary">Choose new Campaign Poster</p>
+								
+								<div class="custom-file">
+								
+									<input type="file" name="profileimage"/>
+								</div>
+								
+								<!-- Campaign Phase Description Field -->
+								<p class="text-secondary m3-2">Enter current phase description</p>
+								<div class="form-group mt-1">
+									<textarea 
+									id="mytextarea1"
+									name="phasedescription"
+									th:text="${campaign.phasedescription}"
+									placeholder="Enter Campaign Phase Description" 
+									rows="5" 
+									class="form-control"
+									></textarea>
+								</div>
+								
+								<div class="container1 text-center mt-5 mb-3">
+									 
+									<button class="btn btn-sm btn-block">Update Campaign</button>
+								
+								</div>
+								
+								</form>
+							
+							</div>
+						
+						</div>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+		
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea1'
+      });
+    </script>
+	</section>
+</body>
+</html>

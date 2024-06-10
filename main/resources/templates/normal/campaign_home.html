@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+		
+		<div class="container">
+		
+			<div class="my-card mb-3" th:if="${campaign}">
+		
+				<div class="card1-body">
+				
+					
+					<div class="container text-center">
+					
+						<img src="" class="campaign_poster" th:src="@{'/img/'+${campaign.image}}" alt="campiagnposter" />
+					
+						<h3 th:text="${campaign.title}"></h3>
+						
+						<div class="campaign_description mt-3">
+						
+							<th:block th:utext="${campaign.description}"></th:block>
+						
+						</div>
+						
+						<table class="table table-striped mt-3">
+						  <thead>
+						    <tr>
+						      <th scope="col">#ID</th>
+						      <th scope="col">CMS2020<span th:text="${campaign.campaignid}"></span></th>
+						      
+						    </tr>
+						    
+						  </thead>
+						  <tbody>
+						  
+						    <tr>
+						      <th scope="row">Startdate</th>
+						      <td><span th:text="${campaign.startdate}"></span></td>
+						      
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">Deadline</th>
+						      <td><span th:text="${campaign.deadline}"></span></td>
+						      
+						    </tr>
+						    <tr>
+						      <th scope="row">Campaign Status</th>
+						      <td><span th:text="${campaign.status}"></span></td>
+						      
+						    </tr>
+						  </tbody>
+						</table>
+						
+						<div class="campaign_phase_descripion">
+						
+						<th:block th:utext="${campaign.phasedescription}"></th:block>
+						
+						</div>
+						
+						<div class="container mt-3">
+						
+							<form method="get" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/connections/0'}" class="mt-3">
+					    		<button type="submit" class="btn btn-primary btn-sm btn-block text-white">Campaign Connections</button>
+					    	</form>
+					    	<form method="get" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/send-mail/0'}" class="mt-3">
+					    		<button type="submit" class="btn btn-warning btn-sm btn-block text-white"><i class="fas fa-envelope-square"></i> Send Mail</button>
+					    	</form>
+							<form method="post" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/update'}" class="mt-3">
+					    		<button type="submit" class="btn btn-success btn-sm btn-block text-white">Update Campaign</button>
+					    	</form>
+							<form method="post" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/delete'}" class="mt-3">
+					    		<button type="submit" class="btn btn-danger btn-sm btn-block text-white">End Campaign</button>
+					    	</form>
+					    	
+						</div>
+						
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		<h1 class="text-center p-3 bg-danger text-white" th:unless="${campaign}">You Don't have permission to view this page.</h1>
+		
+	</section>
+</body>
+</html>

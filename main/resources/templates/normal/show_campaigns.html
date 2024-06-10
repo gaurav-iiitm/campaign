@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container">
+		
+			<div class="my-card mb-3">
+		
+				<div class="card1-body">
+				
+					<h1 class="text-center">Your Campaigns</h1>
+					
+					<table class="table table-striped">
+						<thead>
+						  <tr>
+						    <th scope="col">#Id</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Startdate</th>
+						    <th scope="col">Status</th>
+						    <th scope="col">Action</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr th:each="c : ${campaigns}">
+						  
+						    <th scope="row" th:text="'CMS2020'+${c.campaignid}">1</th>
+						    
+						    <td >
+						    <img src="" class="my_campaign_poster" th:src="@{'/img/'+${c.image}}" alt="campiagnposter" />
+						    
+						    <a href="#" th:href="@{'/user/campaign/'+${c.campaignid}}">
+						    
+						    <span th:text="${c.title}"></span></a>
+						    
+						    </td>
+						    
+						    <td th:text="${c.startdate}">Otto</td>
+						    
+						    <td th:text="${c.status}">@mdo</td>
+						    
+						    <td>
+						    	<form method="post" th:action="@{'/user/campaign/'+${c.campaignid}+'/delete'}" class="mt-1">
+						    		<button type="submit" class="btn btn-danger btn-sm text-white">End Campaign</button>
+						    	</form>
+						    	
+						    	<form method="post" th:action="@{'/user/campaign/'+${c.campaignid}+'/update'}" class="mt-3">
+						    		<button type="submit" class="btn btn-success btn-sm text-white">Update Campaign</button>
+						    	</form>
+						    
+						    </td>
+						  </tr>
+						</tbody>
+					</table>
+					
+					<!-- Pagination -->
+					
+					<nav aria-label="Page navigation example">
+					
+					  <ul class="pagination ml-3">
+					  
+					    <li th:if="${currentpage!=0}" class="page-item"><a class="page-link" th:href="@{'/user/show-campaigns/'+${currentpage-1}}" href="#">Previous</a></li>
+					    
+					    <li th:classappend="${currentpage==i-1?'active':''}" th:each="i: ${#numbers.sequence(1,totalpages)}" class="page-item"><a th:href="@{'/user/show-campaigns/'+${i-1}}" class="page-link" href="#"><span  th:text="${i}"></span></a></li>
+					    
+					    <li th:if="${currentpage+1<totalpages}" class="page-item"><a class="page-link" th:href="@{'/user/show-campaigns/'+${currentpage+1}}" href="#">Next</a></li>
+					    
+					  </ul>
+					  
+					</nav>
+					
+					<form method="get" th:action="@{/user/start-campaign}" class="mt-2">
+			    		<button type="submit" class="btn btn-primary btn-sm btn-block text-white">Start new Campaign</button>
+			    	</form>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</section>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section class="banner d-flex justify-content-center align-items-center">
+		<div class="text-center">
+			<h1 class="font-weight-bold">Campaign Management System</h1>
+			<p>
+			This Campaign Management system allows user to start their campaign and handle its aspects such as adding connections<br>
+			to the campaigns, sending mails to connections associated with campaigns along with edit, update or delete features.<br>
+			<br>A campaign refers to a planned sequence of activities and processes which promote an individual product, service, or resources.<br>
+			<br>Connection is a contact for whom the campaign is to be advertised or communicated with.
+			</p>
+			<form method="get" th:action="@{/signin}">
+			<button class="btn btn-success btn-lg text-white">Get Started
+			</button></form>
+		</div>
+	</section>
+</body>
+</html>

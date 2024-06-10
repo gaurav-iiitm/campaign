@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container">
+		
+			<div class="my-card mb-3" th:if="${connection}">
+		
+				<div class="card1-body">
+				
+					
+					<div class="container text-center">
+					
+					
+						<h3 th:text="${connection.fullname}"></h3>
+						
+						
+						<table class="table table-striped mt-3">
+						  <thead>
+						    <tr>
+						      <th scope="col">#ID</th>
+						      <th scope="col">CMS2020<span th:text="${connection.connectionid}"></span></th>
+						      
+						    </tr>
+						    
+						  </thead>
+						  <tbody>
+						  	<tr>
+						      <th scope="row">Name</th>
+						      <td><span th:text="${connection.fullname}"></span></td>
+						      
+						    </tr>
+						  
+						    <tr>
+						      <th scope="row">Email</th>
+						      <td><span th:text="${connection.email}"></span></td>
+						      
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">Phone Number</th>
+						      <td><span th:text="${connection.phoneno}"></span></td>
+						      
+						    </tr>
+						    <tr>
+						      <th scope="row">Degree</th>
+						      <td><span th:text="${connection.degree}"></span></td>
+						      
+						    </tr>
+						    <tr>
+						      <th scope="row">Work</th>
+						      <td><span th:text="${connection.work}"></span></td>
+						      
+						    </tr>
+						  </tbody>
+						</table>
+						
+						
+						<div class="container mt-3">
+						
+							<form method="post" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/connections/'+${connection.connectionid}+'/remove-connection'}">
+					    		<button type="submit" class="btn btn-danger btn-sm btn-block">Remove Connection from Campaign</button>
+					    	</form>
+					    	
+						</div>
+						
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		
+		
+		<h1 class="text-center p-3 bg-danger text-white" th:unless="${connection}">You Don't have permission to view this page.</h1>
+		
+	</section>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email</title>
+</head>
+<body>
+	<div>Hello <b th:text="${connection.fullname}"></b></div>
+	
+	<div><span th:text=${template.salutation}></span></div><br>
+	
+	<div><b th:text="${campaign.title}"></b></div>
+	
+	
+	<div><span th:utext=${campaign.description}></span></div><br>
+	
+	<div><span th:text="${template.prebody}"></span></div>
+	
+	<div><span th:utext="${mail_detail.mainbody}"></span></div>
+	
+	<div><span th:text="${template.postbody}"></span></div><br>
+	
+	<div><span th:text="${template.followup}"></span></div><br>
+	
+	<div><span th:text="${template.extrainfo}"></span></div><br>
+	
+	<div><span th:text="${template.thankstext}"></span></div><br>
+	
+	<div>Thanking You</div>
+	
+	<div><b th:text="${user.fullname}"></b></div><br>
+	
+	<div><b th:text="${date}"></b></div><br>
+	
+	<div><span th:text="${template.disclaimer}"></span></div>
+	
+</body>
+</html>

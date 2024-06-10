@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container">
+		
+			<div class="my-card mb-3">
+		
+				<div class="card1-body">
+				
+					<h1 class="text-center">Add or Remove Campaign-Connections</h1>
+					
+					<div class="container-fluid mt-1">
+					
+						<div class="row">
+						
+							<div class="col-md-10 offset-md-1">
+							
+								<form 
+								action=""
+								th:object="${connections}"
+								method="POST"
+								th:action="@{'/user/campaign/'+${campaign.campaignid}+'/process-add-or-remove-connection'}"
+								class="mt-2"
+								>
+								
+								
+								
+								<table class='table table-sm responsive table-striped mt-3'>
+							      <thead>
+							           <tr>
+							               <th><input type="checkbox" name="showhide" onchange="checkAll(this)"/></th>
+							               <th th:text="Name"></th>
+							               <th th:text="Email"></th>
+							               <th th:text="Work"></th>
+							           </tr>
+							      </thead>
+							      <tbody>
+							             <tr th:each="c : ${connections}">
+							                 <td>
+							                     <input type="checkbox" name="idChecked" th:name="idChecked" th:value="${c.connectionid}" th:checked="${#lists.contains(campaign_connections,c)} ? 'checked'"/>
+							                 </td>
+							                 <td th:text="${c.fullname}"></td>
+							                 <td th:text="${c.email}"></td>
+							                 <td th:text="${c.work}"></td>                                     
+							             </tr>
+							      </tbody>
+								</table>
+								
+								<div class="container mb-3">
+								
+									<button type="submit" name='save' value="Save"
+								        class="btn btn-primary btn-sm btn-block"
+								        data-toggle="tooltip" data-placement="right"
+								        th:text="Save">
+									</button>
+								
+								</div>
+								
+								</form>
+							
+							</div>
+						
+						</div>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		<script type="text/javascript">
+		
+		function checkAll(e) {
+			   var checkboxes = document.getElementsByName('idChecked');
+			 
+			   if (e.checked) {
+			     for (var i = 0; i < checkboxes.length; i++) { 
+			       checkboxes[i].checked = true;
+			     }
+			   } else {
+			     for (var i = 0; i < checkboxes.length; i++) {
+			       checkboxes[i].checked = false;
+			     }
+			   }
+			 }
+		
+		</script>
+	
+	</section>
+</body>
+</html>

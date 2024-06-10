@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container text-center">
+		
+			<div class="my-card">
+			
+				<div class="card1-body">
+				
+					<h3 class="text-center" th:text="${user.username}"></h3>
+				
+					<h4>Change Your profile image</h4>
+					
+					<img src="" class="profile_photo" th:src="@{'/img/'+${user.imageurl}}" alt="campiagnposter" />
+					
+					<form 
+					action="#"
+					th:object="${user}"
+					enctype="multipart/form-data"
+					method="POST"
+					th:action="@{/user/process-profileimage}"
+					class="mt-2">
+					
+					<div class="custom-file">	
+						<input type="file" name="profileimage"/>
+					</div>
+					
+					<div class="container text-center mt-3 mb-3">
+								 
+						<button class="btn btn-success btn-sm">Save Profile Image</button>
+					
+					</div>
+					</form>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		<div class="container mt-4">
+		
+			<div class="my-card">
+			
+				<div class="card1-body">
+				
+					<h4 class="text-center">Edit Personal Information</h4>
+					
+					<form novalidate action="" th:action="@{/user/update-personalInfo}" method="post" th:object="${userDto}">
+						
+							 
+							 <!-- fullname field -->
+							
+							<div class="form-group mt-3">
+							    <label for="fullname_field">Full Name</label>
+							    
+							    <input 
+							     name="fullname"
+							     type="text"
+							     class="form-control"
+							     th:classappend="${#fields.hasErrors('fullname')? 'is-invalid':''}" 
+							     id="fullname_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter Fullname"
+							     required
+							     th:value="${user.fullname}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('fullname')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- phoneno field -->
+							
+							<div class="form-group">
+							    <label for="phoneno_field">Phone Number</label>
+							    
+							    <input
+							     name="phoneno"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('phoneno')? 'is-invalid':''}"
+							     id="phoneno_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter phoneno"
+							     required
+							     th:value="${user.phoneno}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('phoneno')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- email field -->
+							
+							<div class="form-group">
+							    <label for="email_field">Email Id</label>
+							    
+							    <input
+							     name="email"
+							     type="email"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('email')? 'is-invalid':''}"
+							     id="email_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter email"
+							     required
+							     th:value="${user.email}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- address field -->
+							
+							<div class="form-group">
+							    <label for="address_field">Address</label>
+							    
+							    <input
+							     name="address"
+							     type="text"
+							     class="form-control"
+							     th:classappend="${#fields.hasErrors('address')? 'is-invalid':''}" 
+							     id="address_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter address"
+							     required
+							     th:value="${user.address}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('address')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- experience field -->
+							
+							<div class="form-group">
+							    <label for="phoneno_field">Experience</label>
+							    
+							    <input
+							     name="experience"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('experience')? 'is-invalid':''}"
+							     id="experience_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter experience"
+							     required
+							     th:value="${user.experience}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('experience')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 
+							 <!-- about field -->
+							 <div class="form-group">
+							 	<textarea 
+							 	id="mytextarea"
+							 	name="about" 
+							 	th:text="${user.about}" 
+							 	placeholder="Enter about yourself" 
+							 	rows="12" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <div class="container text-center">
+							 	<button type="submit" class="btn btn-success btn-block text-white">
+							 		Save Changes
+							 	</button>
+							 </div>
+							 
+						</form>
+				
+				</div>	
+			
+			</div>
+		
+		</div>
+		
+		<div class="container mt-4 mb-3">
+		
+			<div class="my-card">
+			
+				<div class="card1-body">
+				
+					<h4 class="text-center">Change Your Password</h4>
+					
+					<form 
+					novalidate
+					th:object="${passwordDto}"
+					method="POST"
+					th:action="@{/user/change-password}"
+					class="mt-2"
+					
+					>
+					
+					<!-- Original password field -->
+							
+					<div class="form-group">
+					    <label for="password_field">Original Password</label>
+					    
+					    <input
+					     name="originalPassword"
+					     type="password"
+					     class="form-control" 
+					     th:classappend="${#fields.hasErrors('originalPassword')? 'is-invalid':''}"
+					     id="password_field" 
+					     aria-describedby="emailHelp"
+					     placeholder="Enter Original Password"
+					     required>
+					     
+					     <div class="invalid-feedback" th:each="e:${#fields.errors('originalPassword')}" th:text="${e}">
+					     
+					     </div>
+					    
+					 </div>
+					 
+					 <!-- New password field -->
+							
+					<div class="form-group">
+					    <label for="password_field">New Password</label>
+					    
+					    <input
+					     name="newPassword"
+					     type="password"
+					     class="form-control" 
+					     th:classappend="${#fields.hasErrors('newPassword')? 'is-invalid':''}"
+					     id="password_field" 
+					     aria-describedby="emailHelp"
+					     placeholder="Enter Original Password"
+					     required>
+					     
+					     <div class="invalid-feedback" th:each="e:${#fields.errors('newPassword')}" th:text="${e}">
+					     
+					     </div>
+					    
+					 </div>
+					 
+					 <!-- Confirm new password field -->
+							
+					<div class="form-group">
+					    <label for="password_field">Confirm new Password</label>
+					    
+					    <input
+					     name="confirmNewPassword"
+					     type="password"
+					     class="form-control" 
+					     th:classappend="${#fields.hasErrors('confirmNewPassword')? 'is-invalid':''}"
+					     id="password_field" 
+					     aria-describedby="emailHelp"
+					     placeholder="Enter Original Password"
+					     required>
+					     
+					     <div class="invalid-feedback" th:each="e:${#fields.errors('confirmNewPassword')}" th:text="${e}">
+					     
+					     </div>
+					    
+					 </div>
+					 
+					 <div class="container text-center">
+					 	<button type="submit" class="btn btn-success btn-block text-white">
+					 		Change Password
+					 	</button>
+					 </div>
+					
+					</form>
+					
+					
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+	
+	</section>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+	
+		<div class="container">
+		
+			<div class="my-card mb-3">
+		
+				<div class="card1-body">
+				
+					<div class="cantainer text-center">
+					
+						<h1 class="text-center">Your Campaign-Connections for <span th:text="${campaign.title}"></span></h1>
+					
+					
+						<table class="table table-striped mt-3">
+							<thead>
+							  <tr>
+							    <th scope="col">#Id</th>
+							    <th scope="col">Name</th>
+							    <th scope="col">Email</th>
+							    <th scope="col">Work</th>
+							    <th scope="col">Action</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr th:each="c : ${connections}">
+							    <th scope="row" th:text="'CMS2020'+${c.connectionid}">1</th>
+							    <td>
+							    
+							    <a href="" th:href="@{'/user/campaign/'+${campaign.campaignid}+'/connections/view/'+${c.connectionid}}">
+							    <span th:text="${c.fullname}"></span></a>
+							    
+							    
+							    </td>
+							    <td th:text="${c.email}">Otto</td>
+							    <td th:text="${c.work}">@mdo</td>
+							    <td>
+							    	
+							    	<form method="post" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/connections/'+${c.connectionid}+'/remove-connection'}">
+							    		<button type="submit" class="btn btn-danger btn-sm">Remove Connection from Campaign</button>
+							    	</form>
+							    
+							    </td>
+							  </tr>
+							</tbody>
+						</table>
+						
+						<!-- Pagination -->
+						
+						<nav aria-label="Page navigation example">
+						
+						  <ul class="pagination ml-3">
+						  
+						    <li th:if="${currentpage!=0}" class="page-item"><a class="page-link" th:href="@{'/user/campaign/'+${campaign.campaignid}+'/connections/'+${currentpage-1}}" href="#">Previous</a></li>
+						    
+						    <li th:classappend="${currentpage==i-1?'active':''}" th:each="i: ${#numbers.sequence(1,totalpages)}" class="page-item"><a th:href="@{'/user/campaign/'+${campaign.campaignid}+'/connections/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+						    
+						    <li th:if="${currentpage+1!=totalpages}" class="page-item"><a class="page-link" th:href="@{'/user/campaign/+'${campaign.campaignid}+'/connections/'+${currentpage+1}}" href="#">Next</a></li>
+						    
+						  </ul>
+						  
+						</nav>
+						
+						<form method="get" th:action="@{'/user/campaign/'+${campaign.campaignid}+'/add-or-remove-connection'}" class="mt-3">
+						    <button type="submit" class="btn btn-success btn-sm btn-block text-white mt-3 my-4">Add or Remove Campaign-Connections</button>
+						</form>
+					
+					</div>
+				
+					
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+		
+	
+	</section>
+</body>
+</html>

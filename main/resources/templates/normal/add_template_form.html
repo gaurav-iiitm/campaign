@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+		
+		<div class="container">
+		
+			<div class="row">
+			
+				<div class="col-md-12">
+				
+					<div class="my-card mt-2 mb-2">
+					
+						<h1 class="text-center">Add new Template</h1>
+						
+						<form
+								novalidate 
+								action="#"
+								th:object="${template}"
+								method="POST"
+								th:action="@{/user/process-template}"
+								class="mt-2"
+							
+							>
+							
+							<!-- title field -->
+							
+							<div class="form-group">
+							    <label for="title_field">Template title</label>
+							    
+							    <input
+							     name="title"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('title')? 'is-invalid':''}"
+							     id="title_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter Template Title"
+							     required
+							     th:value="${template.title}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('title')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- Template Description field -->
+							 
+							 <p class="text-secondary">Enter About this template here</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="description" 
+							 	th:text="${template.description}" 
+							 	placeholder="Enter About this template here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Salutation field -->
+							 
+							 <p class="text-secondary">Enter Greetings Here</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="salutation" 
+							 	th:text="${template.salutation}" 
+							 	placeholder="Enter Greetings here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Prebody field -->
+							 <p class="text-secondary">Enter Pre-body text before main content</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="prebody" 
+							 	th:text="${template.prebody}" 
+							 	placeholder="Enter Pre-body text before main content" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Postbody field -->
+							 <p class="text-secondary">Enter Post-body text before main content</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="postbody" 
+							 	th:text="${template.postbody}" 
+							 	placeholder="Enter Post-body text before main content" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Followup text field -->
+							 <p class="text-secondary">Enter Follow-up text</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="followup" 
+							 	th:text="${template.followup}" 
+							 	placeholder="Enter Followup text here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Extrainfo text field -->
+							 <p class="text-secondary">Enter Something else you want</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="extrainfo" 
+							 	th:text="${template.extrainfo}" 
+							 	placeholder="Enter Followup text here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Thanks text field -->
+							 <p class="text-secondary">Enter Thanks text here</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="thankstext" 
+							 	th:text="${template.thankstext}" 
+							 	placeholder="Enter Thanks text here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- Disclaimer text field -->
+							 <p class="text-secondary">Enter Disclaimer+Warning here</p>
+							 <div class="form-group">
+							 	<textarea 
+							 	name="disclaimer" 
+							 	th:text="${template.disclaimer}" 
+							 	placeholder="Enter Disclaimer+Warning Here" 
+							 	rows="4" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <div class="container1 text-center mt-3 mb-3">
+							
+								<button class="btn btn-block">Save Template</button>
+							
+							</div>
+							
+						</form>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>	
+
+	</section>
+</body>
+</html>

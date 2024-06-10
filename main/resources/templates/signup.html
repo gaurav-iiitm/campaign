@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card mt-2 mb-2">
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+						  <p class="text-center" th:text="${session.message.content}"></p>
+						  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+					
+					<div class="container text-center">
+						<img style="width:80px" src="" th:src="@{/img/register.png}" alt="" />
+					</div>
+						<h1 class="text-center">Register Here</h1>
+						<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
+						
+							<!-- username field -->
+							
+							<div class="form-group">
+							    <label for="username_field">Your Username</label>
+							    
+							    <input
+							     name="username"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('username')? 'is-invalid':''}"
+							     id="username_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter username"
+							     required
+							     th:value="${user.username}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('username')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- fullname field -->
+							
+							<div class="form-group">
+							    <label for="fullname_field">Your Full Name</label>
+							    
+							    <input 
+							     name="fullname"
+							     type="text"
+							     class="form-control"
+							     th:classappend="${#fields.hasErrors('fullname')? 'is-invalid':''}" 
+							     id="fullname_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter fullname"
+							     required
+							     th:value="${user.fullname}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('fullname')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- phoneno field -->
+							
+							<div class="form-group">
+							    <label for="phoneno_field">Your Phone number</label>
+							    
+							    <input
+							     name="phoneno"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('phoneno')? 'is-invalid':''}"
+							     id="phoneno_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter phoneno"
+							     required
+							     th:value="${user.phoneno}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('phoneno')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- email field -->
+							
+							<div class="form-group">
+							    <label for="email_field">Your email id</label>
+							    
+							    <input
+							     name="email"
+							     type="email"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('email')? 'is-invalid':''}"
+							     id="email_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter email"
+							     required
+							     th:value="${user.email}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- address field -->
+							
+							<div class="form-group">
+							    <label for="address_field"> Your Address</label>
+							    
+							    <input
+							     name="address"
+							     type="text"
+							     class="form-control"
+							     th:classappend="${#fields.hasErrors('address')? 'is-invalid':''}" 
+							     id="address_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter address"
+							     required
+							     th:value="${user.address}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('address')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- experience field -->
+							
+							<div class="form-group">
+							    <label for="phoneno_field">Your Experience</label>
+							    
+							    <input
+							     name="experience"
+							     type="text"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('experience')? 'is-invalid':''}"
+							     id="experience_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter experience"
+							     required
+							     th:value="${user.experience}">
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('experience')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- password field -->
+							
+							<div class="form-group">
+							    <label for="password_field">Your Password</label>
+							    
+							    <input
+							     name="password"
+							     type="password"
+							     class="form-control" 
+							     th:classappend="${#fields.hasErrors('password')? 'is-invalid':''}"
+							     id="password_field" 
+							     aria-describedby="emailHelp"
+							     placeholder="Enter password"
+							     required>
+							     
+							     <div class="invalid-feedback" th:each="e:${#fields.errors('password')}" th:text="${e}">
+							     
+							     </div>
+							    
+							 </div>
+							 
+							 <!-- about field -->
+							 <div class="form-group">
+							 	<textarea 
+							 	id="mytextarea"
+							 	name="about" 
+							 	th:text="${user.about}" 
+							 	placeholder="Enter about yourself" 
+							 	rows="8" 
+							 	class="form-control"
+							 	></textarea>
+							 </div>
+							 
+							 <!-- terms and conditions agreement -->
+							 <div class="form-group form-check text-center">
+							 	<input type="checkbox" name="agreement" id="agreement"/>
+							 	<label for="agreement">Accept terms and conditions</label>
+							 </div>
+							 
+							 <div class="container text-center">
+							 	<button type="submit" class="btn btn-success btn-sm btn-block text-white">
+							 		Submit
+							 	</button>
+							 	<button type="reset" class="btn btn-warning btn-sm btn-block text-white">
+							 		Reset
+							 	</button>
+							 </div>
+							 
+						</form>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+		
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+		
+	</section>
+</body>
+</html>

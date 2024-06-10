@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+		
+		<div class="container text-center">
+		
+			<div class="card2 mb-3">
+			
+				<div class="card1-body">
+				
+					<img src="" class="dashboard_background" th:src="@{/img/dashboard_background.jpg}" alt="campiagnposter" />
+					
+					
+					<div class="d-flex justify-content-center links text-dark">
+						<h5>Hello <a th:href="@{/user/profile}" href="#" class="text-dark font-weight-bold" th:text="${user.username}"></a>,</h5>
+					</div>
+					<h5>Welcome to the Campaign Management System.</h5>
+					<br><h5>You have added <b th:text="${#lists.size(user.connections)}"></b> Connections so far.</h5>
+					<div class="d-flex justify-content-center links text-dark">
+						<h5>Head to <a th:href="@{/user/show-connections/0}" href="#" class="text-dark font-weight-bold">Connections?</a></h5>
+					</div>
+					<br><h5>You have <b th:text="${#lists.size(user.campaigns)}"></b> active Campaigns.</h5>
+					<div class="d-flex justify-content-center links text-dark">
+						<h5>Manage your <a th:href="@{/user/show-campaigns/0}" href="#" class="text-dark font-weight-bold">Campaigns?</a></h5>
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+	</section>
+</body>
+</html>

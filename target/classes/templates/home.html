@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section class="banner d-flex justify-content-center align-items-center">
+		<div class="text-center">
+			<h1 class="font-weight-bold">This is a Campaign Management System.</h1>
+			<p>
+			Start managing your campaigns in smarter way with this Campaign Management System.
+			</p>
+			<form method="get" th:action="@{/signin}">
+			<button class="btn btn-success btn-lg text-white">Get Started
+			</button></form>
+		</div>
+	</section>
+</body>
+</html>

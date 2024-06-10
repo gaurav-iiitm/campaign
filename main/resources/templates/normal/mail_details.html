@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Campaign Management System</title>
+</head>
+<body>
+	<section>
+		
+		<div class="container">
+		
+			<div class="row">
+			
+				<div class="col-md-10 offset-md-1">
+				
+					<div class="my-card mt-2 mb-3">
+					
+						<div class="container text-center">
+							<img style="width:80px" src="" th:src="@{/img/email.png}" alt="" />
+						</div>
+						
+						<form 
+						action=""
+						th:action="@{'/user/campaign/'+${campaign.campaignid}+'/send-mail/template/'+${template.templateid}+'/send'}"
+						method="post"
+						th:object="${mail_detail}"
+						enctype="multipart/form-data"
+						>
+						
+						<p class="text-secondary">Subject</p>
+						 <div class="form-group mt-3">
+							 	<textarea 
+							 	name="subject" 
+							 	th:text="${mail_detail.subject}" 
+							 	placeholder="Enter the mail subject" 
+							 	rows="3" 
+							 	class="form-control"
+							 	></textarea>
+						
+						</div>
+						
+						<p class="text-secondary">Main Body</p>
+						
+						<div class="form-group mt-3">
+							 	<textarea 
+							 	id="mytextarea"
+							 	name="mainbody" 
+							 	th:text="${mail_detail.mainbody}" 
+							 	placeholder="Enter the main body of mail" 
+							 	rows="10" 
+							 	class="form-control"
+							 	></textarea>
+						
+						</div>
+						
+						<p class="text-secondary">Attachment</p>
+						<div class="custom-file">
+							
+							<input type="file" name="attachmentfile"/>
+						</div>
+						
+						<div class="container text-center mt-3">
+						
+							<button type="submit" class="btn btn-success btn-block"><i class="fas fa-envelope-square"></i> Send Mail</button>
+						
+						</div>
+						
+						</form>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+		
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+		
+	</section>
+</body>
+</html>
